@@ -1,17 +1,20 @@
 from pathlib import Path
+import os
+from django.contrib.messages import constants as messages
+
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v!+)#5z9*3!rzd_xg$-!_c=_bdcr)+p$x+6gybw$k_&v=qws6&'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = []
 
@@ -130,7 +133,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
@@ -138,9 +140,9 @@ MESSAGE_TAGS = {
 
 # SMTP config
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_TIMEOUT = 60
-EMAIL_HOST_USER = 'franco.loto1995@gmail.com'
-EMAIL_HOST_PASSWORD = 'nvcmnaiezzjhgzez'
-EMAIL_USE_TLS = True
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_PORT = os.environ.get("EMAIL_PORT")
+EMAIL_TIMEOUT = os.environ.get("EMAIL_TIMEOUT")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS")
